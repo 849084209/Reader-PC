@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<input id="buttonMenu" type="button" onclick="menuLink()" value="章节目录" />
+	<input type="button" onclick="nextUnitContext()" value="下一章 " />
+	<div id="context" style="background-color: RGB(227, 237, 205)"></div>
+	<input type="button" onclick="nextUnitContext()" value="下一章 " />
+</body>
+<script type="text/javascript">
+	//全局--当前章节line
+	var currentUnitLine;
+	
+	window.onload=function(){
+	    //获取历史章节.如果没有到目录页
+		var lineHistory = GetHistory();
+	    if(lineHistory!=null&&lineHistory!=''){
+	    	unitContext(lineHistory);
+	    }
+	}
+
+	//获取章节目录 并填充到页面
+	function menuLink() {
+		var unitAll = GetUnitAll("D:/文档/党敏/244797.txt;2");
+		//string to json
+		var jsonObj = JSON.parse(unitAll);
+		var table = "<table border='1'>"
+		for (var i = 0; i < jsonObj.length; i++) {
+			table = table + "<tr><td>" + "<a href='#' onclick='unitContext("
+					+ jsonObj[i].line + ")'>" + jsonObj[i].unitName + "</a>"
+					+ "</td></tr>";
+		}
+		+"</table>";
+		document.getElementById('context').innerHTML = table;
+	}
+	//获取指定行所在的后续章节
+	function unitContext(line) {
+		var data = GetUnit("D:/文档/党敏/244797.txt;" + line);
+		this.inHtmlUnitContext(data);
+	}
+	//下一章	
+	function nextUnitContext() {
+		var data = GetNextUnit("D:/文档/党敏/244797.txt;" + currentUnitLine);
+		this.inHtmlUnitContext(data);
+	}
+	//将数据填充到页面中。数据是章节数据
+	function inHtmlUnitContext(data) {
+		//string to json
+		var jsonObj = JSON.parse(data);
+		currentUnitLine = jsonObj[0].line;
+		var table = "<table border='0'>"
+		for (var i = 0; i < jsonObj.length; i++) {
+			table = table + "<tr><td>" + jsonObj[i].unitName + "</td></tr>";
+		}
+		+"</table>";
+		document.getElementById('context').innerHTML = table;
+	}
+</script>
+</html>

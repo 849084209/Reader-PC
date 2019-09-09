@@ -10,24 +10,29 @@ import main.java.util.GetNextUnit;
 import main.java.util.GetUnit;
 import main.java.util.GetUnitAll;
 
+/**
+ * @author libowen1
+ *
+ */
 public class ReaderMain extends Shell {
 
 	/**
 	 * Launch the application.
+	 * 
 	 * @param args
 	 */
 	public static void main(String args[]) {
 		try {
 			String path = System.getProperty("user.dir");
-			String url = "file:///"+path+"/index.html";
+			String url = "file:///" + path + "/index.html";
 			System.out.println(url);
-//			String url = args[0];
+			// String url = args[0];
 			Integer windowHeight = 780;
 			Integer windowWeith = 551;
 			Display display = new Display();
 			Shell shell = new Shell(display);
 			shell.setText("Reader");
-			shell.setSize(windowHeight+10, windowWeith+40);
+			shell.setSize(windowHeight + 10, windowWeith + 40);
 			final Browser browser = new Browser(shell, SWT.EMBEDDED);
 			Browser.clearSessions();
 			browser.refresh();
@@ -39,8 +44,9 @@ public class ReaderMain extends Shell {
 			new GetHistory(browser, "GetHistory");
 			shell.open();
 			while (!shell.isDisposed()) {
-				if (!display.readAndDispatch())
+				if (!display.readAndDispatch()) {
 					display.sleep();
+				}
 			}
 			display.dispose();
 		} catch (Exception e) {
@@ -50,6 +56,7 @@ public class ReaderMain extends Shell {
 
 	/**
 	 * Create the shell.
+	 * 
 	 * @param display
 	 */
 	public ReaderMain(Display display) {

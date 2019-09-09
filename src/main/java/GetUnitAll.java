@@ -31,7 +31,7 @@ public class GetUnitAll extends BrowserFunction {
 	public Object function(Object[] arguments) {
 		System.out.println(arguments.toString());
 		String[] param = arguments[0].toString().split(";");
-		Object readList = GetUnitAll.ReadList(param[0].toString(),Integer.parseInt(param[1].toString()));
+		Object readList = GetUnitAll.readList(param[0].toString(),Integer.parseInt(param[1].toString()));
 		System.out.println(readList);
 		return readList;
 	}
@@ -42,10 +42,11 @@ public class GetUnitAll extends BrowserFunction {
 	 * @param fileName
 	 * @throws IOException
 	 */
-	public static Object ReadList(String fileName,Integer currentPage) {
+	public static Object readList(String fileName,Integer currentPage) {
 		List<UnitDTO> result = new ArrayList<>();
 		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));// 使用缓冲区的方法将数据读入到缓冲区中
+			// 使用缓冲区的方法将数据读入到缓冲区中
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
 			String str;
 			int i = 1,line = 1, min = (currentPage-1)*10+1,max = currentPage*10;
 			while ((str = br.readLine()) != null) {
@@ -68,7 +69,7 @@ public class GetUnitAll extends BrowserFunction {
 
 	public static void main(String[] args) {
 		String fileName = "D:/文档/党敏/244797.txt";
-		Object readList = ReadList(fileName, 2);
+		Object readList = readList(fileName, 2);
 		System.out.println(readList.toString());
 	}
 

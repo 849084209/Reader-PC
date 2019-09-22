@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<input type="file"
+       id="avatar" name="avatar"
+       accept="file/txt" >
+	<input type="button" id="aa" value="确认导入" onclick="javascript: _s();" />  
+</body>
+<script type="text/javascript">
+var sdf = document.getElementById('avatar').value;
+function _s() {  
+         var f = document.getElementById('avatar').files;  
+         //名称  
+         alert(f[0].name);  
+         //类型  
+      alert(document.getElementById('avatar').value);  
+    }  
+</script>
+</html>

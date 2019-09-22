@@ -26,7 +26,6 @@ public class ReaderMain extends Shell {
 			String path = System.getProperty("user.dir");
 			String url = "file:///" + path + "/index.html";
 			System.out.println(url);
-			// String url = args[0];
 			Integer windowHeight = 780;
 			Integer windowWeith = 551;
 			Display display = new Display();

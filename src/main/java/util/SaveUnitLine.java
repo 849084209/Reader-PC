@@ -100,7 +100,12 @@ public class SaveUnitLine {
 	 * @return
 	 */
 	public static List<BookDTO> getBooks() {
-		return JSONArray.parseArray(getDatafromFile(), BookDTO.class);
+		String datafromFile = getDatafromFile();
+		//如果书架里面没有数据，返回null 的书架集合
+		if(datafromFile.isEmpty()) {
+			return new ArrayList<BookDTO>();
+		}
+		return JSONArray.parseArray(datafromFile, BookDTO.class);
 	}
 	public static void main(String[] args) {
 		BookDTO bookDTO = new BookDTO();

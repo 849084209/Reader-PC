@@ -50,6 +50,7 @@ public class ImportBook extends BrowserFunction {
 		BookDTO bookDTO = new BookDTO();
 		bookDTO.setName(name.replace(".txt", ""));
 		bookDTO.setHistoryUnitName("未开始阅读");
+		bookDTO.setCurrentPage(1);
 		bookDTO.setUrl(url);
 		books.add(bookDTO);
 		//重新保存数据

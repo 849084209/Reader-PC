@@ -24,7 +24,7 @@
 		}
 	}
 	//获取章节目录 并填充到页面
-	function menuLink(url) {
+	function menuLink(url,currentPage) {
 		var unitAll = GetUnitAll(url + ";2");
 		//string to json
 		var jsonObj = JSON.parse(unitAll);
@@ -90,7 +90,7 @@
 				url = jsonObj[i].url.replace(/\\/g, "\/\/");
 			}
 			table = table + "<tr><td>" + "<a href='#' onclick='menuLink(" + '"'
-					+ url + '"' + ")'>" + jsonObj[i].name + "</a>" + "</td>"
+					+ url + '",' +jsonObj[i].currentPage+ ")'>" + jsonObj[i].name + "</a>" + "</td>"
 					+ "<td>" + "阅读历史:" + jsonObj[i].historyUnitName + "</td>"
 					+ "</tr>";
 		}

@@ -27,7 +27,20 @@ public class BookDTO {
 	 */
 	private int unitAll;
 	
+	/**
+	 * 章节目录的第几页
+	 */
+	private int currentPage;
+	
 	private long lastReaderTime;
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
 
 	public String getName() {
 		return name;

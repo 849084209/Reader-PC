@@ -5,9 +5,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<input type="button" onclick="bookShelf()" value="书架" />
+	<input type="button" onclick="bookShelf()" value="书架"  />
 	<input type="button" onclick="inTobookShelf()" value="导入" />
 	<!-- <input id="buttonMenu" type="button" onclick="menuLink()" value="章节目录" /> -->
+	<a href="#" onclick="menuLink('D:\文档\党敏\110122.txt')">真.李四</a>
 	<input type="button" onclick="nextUnitContext()" value="下一章 " />
 	<input type="button" onclick="nextUnitContext()" value="下一章 " />
 	</br>
@@ -18,14 +19,14 @@
 	var currentUnitLine;
 	window.onload = function() {
 		//获取历史章节.如果没有到目录页
-		var lineHistory = GetHistory();
+		var lineHistory = "";
 		if (lineHistory != null && lineHistory != '') {
 			unitContext(lineHistory);
 		}
 	}
 	//获取章节目录 并填充到页面
 	function menuLink(url) {
-		var unitAll = GetUnitAll(url + ";2");
+		var unitAll = GetUnitAll(url+";2");
 		//string to json
 		var jsonObj = JSON.parse(unitAll);
 		var table = "<table border='1'>";
@@ -34,7 +35,7 @@
 					+ jsonObj[i].line + ")'>" + jsonObj[i].unitName + "</a>"
 					+ "</td></tr>";
 		}
-		table = table + "</table>";
+		table = table +"</table>";
 		document.getElementById('context').innerHTML = table;
 	}
 	//获取指定行所在的后续章节
@@ -72,29 +73,30 @@
 			alert("书籍为空!");
 			return;
 		}
-		var data = ImportBook(f[0].name + ";"
-				+ document.getElementById('avatar').value);
-		if (data) {
+		var data = ImportBook(f[0].name +";"+ document.getElementById('avatar').value);
+		if(data){
 			alert(data);
 		}
 	}
 	//查询书架
-	function bookShelf() {
-		var _data = BookShelf();
+	function bookShelf(){
+		//var _data = BookShelf();
 		//string to json
-		var jsonObj = JSON.parse(_data);
+		//var jsonObj = JSON.parse(_data);
+		var jsonObj = [{"historyUnitLine":12345,"lastReaderTime":1571813147772,"name":"王二麻","unitAll":0},{"historyUnitLine":1234,"lastReaderTime":1571813147772,"name":"真.李四","unitAll":0,"url":"D:\\文档\\党敏\\110122.txt"},{"historyUnitLine":123,"lastReaderTime":1571813147772,"name":"张三李四王二麻","unitAll":0,"url":"D:qwd/123/asd"},{"historyUnitLine":0,"lastReaderTime":0,"name":"code","unitAll":0,"url":"C:\\Users\\libowen1\\Desktop\\code.txt"}];
 		var table = "<table border='1'>";
 		for (var i = 0; i < jsonObj.length; i++) {
 			var url = "";
-			if (jsonObj[i].url) {
+			if(jsonObj[i].url){
 				url = jsonObj[i].url.replace(/\\/g, "\/\/");
 			}
-			table = table + "<tr><td>" + "<a href='#' onclick='menuLink(" + '"'
-					+ url + '"' + ")'>" + jsonObj[i].name + "</a>" + "</td>"
-					+ "<td>" + "阅读历史:" + jsonObj[i].historyUnitName + "</td>"
-					+ "</tr>";
+			table = table + "<tr><td>" + "<a href='#' onclick='menuLink("+'"' +url+'"' +")'>" + jsonObj[i].name + "</a>"
+					+ "</td>"
+					+"<td>"+"阅读历史:"+jsonObj[i].historyUnitName
+					+"</td>"
+					+"</tr>";
 		}
-		table = table + "</table>";
+		table = table +"</table>";
 		document.getElementById('context').innerHTML = table;
 	}
 </script>

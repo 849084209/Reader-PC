@@ -62,6 +62,7 @@ public class GetUnitAll extends BrowserFunction {
 				}
 				line++;
 			}
+			br.close();
 		} catch (IOException e) {
 			System.out.println("文件找不到或者转换io错误:"+e.getCause());
 		}

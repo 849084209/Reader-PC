@@ -5,10 +5,12 @@ import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import main.java.util.BookShelf;
 import main.java.util.GetHistory;
 import main.java.util.GetNextUnit;
 import main.java.util.GetUnit;
 import main.java.util.GetUnitAll;
+import main.java.util.ImportBook;
 
 /**
  * @author libowen1
@@ -37,10 +39,18 @@ public class ReaderMain extends Shell {
 			browser.refresh();
 			browser.setUrl(url);
 			browser.setBounds(4, 4, windowHeight, windowWeith);
+			//获取所有章节数据
 			new GetUnitAll(browser, "GetUnitAll");
+			//获取当前章节数据
 			new GetUnit(browser, "GetUnit");
+			//获取下一章数据
 			new GetNextUnit(browser, "GetNextUnit");
+			//获取读取历史line
 			new GetHistory(browser, "GetHistory");
+			//导入书籍,入参例子: 武穆遗书;d:/QDQ/武穆遗书.TXT    (书名+分号+URL)
+			new ImportBook(browser, "ImportBook");
+			//获取书架内容
+			new BookShelf(browser, "BookShelf");
 			shell.open();
 			while (!shell.isDisposed()) {
 				if (!display.readAndDispatch()) {

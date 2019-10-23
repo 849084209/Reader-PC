@@ -112,10 +112,12 @@ public class SaveUnitLine {
 		bookDTO.setHistoryUnitLine(123);
 		bookDTO.setLastReaderTime(System.currentTimeMillis());
 		bookDTO.setName("张三李四王二麻");
+		bookDTO.setUrl("D:qwd/123/asd");
 		BookDTO bookDTO1 = new BookDTO();
 		bookDTO1.setHistoryUnitLine(1234);
 		bookDTO1.setLastReaderTime(System.currentTimeMillis());
 		bookDTO1.setName("李四");
+		bookDTO1.setUrl("D:qwd/123/asd");
 		BookDTO bookDTO2 = new BookDTO();
 		bookDTO2.setHistoryUnitLine(12345);
 		bookDTO2.setLastReaderTime(System.currentTimeMillis());
@@ -124,10 +126,9 @@ public class SaveUnitLine {
 		result.add(bookDTO2);
 		result.add(bookDTO1);
 		result.add(bookDTO);
-		String jsonString = JSONArray.toJSONString(result);
-		System.out.println(jsonString);
-		List<BookDTO> parseArray = JSONArray.parseArray(jsonString, BookDTO.class);
-		System.out.println(parseArray.toString());
+		saveDataToFile(result);
+		List<BookDTO> books = getBooks();
+		System.out.println(books.toString());
 	}
 	/**
 	 * 读取数据
